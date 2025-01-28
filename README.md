@@ -5,7 +5,7 @@
 1. Clone the repository:
 
    ```
-   git clone https://github.com/your-username/receipt-processor.git
+   git clone https://github.com/raj-arumugam/receipt-processor
    cd receipt-processor
    ```
 
