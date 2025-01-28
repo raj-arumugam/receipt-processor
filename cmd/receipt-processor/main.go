@@ -4,14 +4,20 @@ import (
 	"log"
 	"net/http"
 
-	"receipt-processor/internal/api"
+	"receipt-processor/internal/api/router"
 	"receipt-processor/internal/service"
+	"receipt-processor/internal/storage"
 )
 
 func main() {
-	receiptService := service.NewReceiptService()
-	api.SetupRoutes(receiptService)
+	// Initialize dependencies
+	calculator := service.NewPointsCalculator()
+	storage := storage.NewMemoryStorage()
+	receiptService := service.NewReceiptService(calculator, storage)
 
-	log.Println("Server started on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	// Setup router with dependencies
+	r := router.SetupRouter(receiptService)
+
+	log.Println("Server starting on :8080")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }

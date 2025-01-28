@@ -1,4 +1,4 @@
-package model
+package models
 
 type Receipt struct {
 	Retailer     string `json:"retailer"`
@@ -13,10 +13,7 @@ type Item struct {
 	Price            string `json:"price"`
 }
 
-type PointsResponse struct {
-	Points int `json:"points"`
-}
-
-type IDResponse struct {
-	ID string `json:"id"`
+type ProcessedReceipt struct {
+	ID     string
+	Points int
 }
